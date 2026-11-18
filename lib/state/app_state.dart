@@ -251,8 +251,9 @@ class VaneAppState extends ChangeNotifier {
                 turn.answer = streamedAnswer;
               case SearchCompleted():
               case SearchError():
-                if (event is SearchError)
-                  streamError = describeError(Exception(event.message));
+                if (event is SearchError) {
+                  streamError = describeError(event);
+                }
                 streamedAnswer = turn.answer;
                 _finishTurn(chat);
             }
